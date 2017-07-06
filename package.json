@@ -1,0 +1,20 @@
+{
+  "name": "yaya",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "win32pack": "electron-packager . --platform=win32 --arch=ia32  --out=../ --ignore=\"(master|node_modules)\" --overwrite",
+    "asar32pack": "asar pack ../yaya-win32-ia32/resources/app ../yaya-win32-ia32/resources/app.asar",
+    "win64pack": "electron-packager . --platform=win32 --arch=x64  --out=../ --ignore=\"(master|node_modules)\" --overwrite",
+    "asar64pack": "asar pack ../yaya-win32-x64/resources/app ../yaya-win32-x64/resources/app.asar"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^1.6.11",
+    "electron-packager": "^8.7.2"
+  }
+}
