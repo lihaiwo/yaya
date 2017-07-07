@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    node 当前使用的node为<script>document.write(process.versions.node)</script>,
-    Chrome 为<script>document.write(process.versions.chrome)</script>,
-    和 Electron 为<script>document.write(process.versions.electron)</script>.
-  </body>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+
+  <title>yaya</title>
+</head>
+
+<body>
+
+  <div id="webviews"></div>
+
+  <script src="js/default.js"></script>
+  <script src="js/webviews.js"></script>
+  <script src="js/findinpage.js"></script>
+  <script src="js/keybindings.js"></script>
+</body>
+
 </html>
