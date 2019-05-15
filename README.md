@@ -1,2 +1,3 @@
-# yaya
-111
+1、  os系统:"packageDarwin": "electron-packager . 'Hosts' --platform=darwin --arch=x64 --icon=hosts.icns --out=./dist --asar --app-version=2.0.1 --ignore=\"(dist|src|docs|.gitignore|LICENSE|README.md|webpack.config*|node_modules)\"",
+    os系统:"packageDarwin": "electron-packager . 'Hosts' --platform=darwin --arch=x64 --icon=hosts.icns --out=./dist --asar --app-version=2.0.1",
+2、  http://blog.csdn.net/w342916053/article/details/51323634   window的安装 自动更新
