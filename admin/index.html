@@ -8,22 +8,14 @@
     <script type="text/javascript" src="./dist/iview.min.js"></script>
   </head>
   <body>
-    <Button @click="show">Click me!</Button>
+  <div id="app">
+    <Button @click="produce">Click me!</Button>
+  </div>
 
+    <script type="text/javascript" src="./js/index.js"></script>
     <script>
       // You can also require other files to run in this process
-      require('./renderer.js')
-      new Vue({
-        el: '#app',
-        data: {
-            visible: false
-        },
-        methods: {
-            show: function () {
-                this.visible = true;
-            }
-        }
-      })
+      // require('./renderer.js')
     </script>
   </body>
 </html>

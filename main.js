@@ -1,6 +1,26 @@
 
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, Menu, BrowserWindow} = require('electron')
+const template = require('./menu')
+
+if (process.platform === 'darwin') {
+  template.unshift({
+    label: app.getName(),
+    submenu: [
+      { role: 'about' },
+      { type: 'separator' },
+      { role: 'services' },
+      { type: 'separator' },
+      { role: 'hide' },
+      { role: 'hideothers' },
+      { role: 'unhide' },
+      { type: 'separator' },
+      { role: 'quit' }
+    ]
+  })
+}
+const menu = Menu.buildFromTemplate(template)
+Menu.setApplicationMenu(menu)
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -17,7 +37,7 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('admin/index.html')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
