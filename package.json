@@ -2,7 +2,7 @@
   "name": "pay-origin",
   "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "background.js",
   "scripts": {
     "dev": "vue-cli-service electron:serve",
     "build": "vue-cli-service electron:build"

@@ -1,6 +1,8 @@
 
 // Modules to control application life and create native browser window
-const {app, Menu, BrowserWindow} = require('electron')
+const {app, protocol, Menu, BrowserWindow} = require('electron')
+import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
+const isDevelopment = process.env.NODE_ENV !== 'production'
 const template = require('./menu')
 
 if (process.platform === 'darwin') {
@@ -24,11 +26,11 @@ Menu.setApplicationMenu(menu)
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let win
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -38,30 +40,18 @@ function createWindow () {
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
-    mainWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
-    if (!process.env.IS_TEST) mainWindow.webContents.openDevTools()
+    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app')
     // Load the index.html when not in development
-    mainWindow.loadURL('app://./index.html')
+    win.loadURL('app://./index.html')
   }
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools()
-
-  // Emitted when the window is closed.
-  mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null
+  win.on('closed', function () {
+    win = null
   })
 }
-
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
@@ -73,8 +63,35 @@ app.on('window-all-closed', function () {
 app.on('activate', function () {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  if (mainWindow === null) createWindow()
+  if (win === null) createWindow()
 })
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.on('ready', async () => {
+  if (isDevelopment && !process.env.IS_TEST) {
+    // Install Vue Devtools
+    try {
+      await installVueDevtools()
+    } catch (e) {
+      console.error('Vue Devtools failed to install:', e.toString())
+    }
+  }
+  createWindow()
+})
+
+// Exit cleanly on request from parent process in development mode.
+if (isDevelopment) {
+  if (process.platform === 'win32') {
+    process.on('message', data => {
+      if (data === 'graceful-exit') {
+        app.quit()
+      }
+    })
+  } else {
+    process.on('SIGTERM', () => {
+      app.quit()
+    })
+  }
+}
