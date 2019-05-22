@@ -1,3 +1,3 @@
-1、  os系统:"packageDarwin": "electron-packager . 'Hosts' --platform=darwin --arch=x64 --icon=hosts.icns --out=./dist --asar --app-version=2.0.1 --ignore=\"(dist|src|docs|.gitignore|LICENSE|README.md|webpack.config*|node_modules)\"",
-    os系统:"packageDarwin": "electron-packager . 'Hosts' --platform=darwin --arch=x64 --icon=hosts.icns --out=./dist --asar --app-version=2.0.1",
-2、  http://blog.csdn.net/w342916053/article/details/51323634   window的安装 自动更新
+1、__static   ---   /Users/lihaiwo/Documents/test/electron/yaya/public
+2、所有带前缀的env变量VUE_APP_都可以在主进程和渲染器进程中使用
+3、process.env.BASE_URL  应用程序文件的路径
