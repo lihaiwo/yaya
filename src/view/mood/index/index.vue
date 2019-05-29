@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mood">
     <router-view/>
   </div>
 </template>
@@ -14,3 +14,9 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.mood {
+  height: 100%;
+  background-color: aliceblue;
+}
+</style>

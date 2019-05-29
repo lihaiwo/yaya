@@ -1,17 +1,19 @@
 <template>
   <div class="welcome">
-    <Button @click="goVideo">实时通讯</Button>
   </div>
 </template>
 <script>
+import { setTimeout } from 'timers';
 export default {
   data () {
     return {}
   },
   methods: {
-    goVideo () {
-      this.$router.push('/video')
-    }
+  },
+  mounted () {
+    window.setTimeout(() => {
+      this.$router.push('/mood')
+    }, 3000);
   }
 }
 </script>
