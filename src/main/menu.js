@@ -5,5 +5,5 @@ module.exports = [
       { label:'打开调试工具',role: 'toggledevtools' },
       { label:'刷新',role: 'reload' },
     ]
-  },
+  }
 ]

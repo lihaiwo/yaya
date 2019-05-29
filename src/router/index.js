@@ -6,7 +6,7 @@ import store from '@/store'
 Vue.use(Router)
 const router = new Router({
   routes,
-  // mode: 'history'
+  mode: 'history'
 })
 
 router.beforeEach((to, from, next) => {
